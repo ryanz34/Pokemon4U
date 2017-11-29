@@ -1,5 +1,8 @@
 package com.pokemon;
 
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -11,6 +14,7 @@ public class Pokemon {
     private String weakness;
     private int attCount;
     private ArrayList<Attack> attack = new ArrayList<>();
+    private String art;
 
 
     public Pokemon(String pokeData) {
@@ -58,6 +62,14 @@ public class Pokemon {
 
     public ArrayList<Attack> getAttack() {
         return attack;
+    }
+
+    public void setArt(String art) {
+        this.art = art;
+    }
+
+    public String getArt() {
+        return art;
     }
 
     public String toString () {
