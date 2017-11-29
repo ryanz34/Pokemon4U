@@ -16,23 +16,17 @@ public class Main {
                 String.format("║ 3 ║ %20s ║", "Quit") + "\n" +
                 "╚═══╩══════════════════════╝");
 
-        while (true) {
+        selection = getInput.range(input, "Error, please select a valid response", ">>> ", 1, 3);
+
+        if (selection == 1) {
+            // Multiplayer stuff
+        } else if (selection == 2) {
+            System.out.println("Enter the number of battles (0 for random)");
             System.out.print(">>> ");
             selection = input.nextInt();
 
-            if (selection == 1) {
-                // Multiplayer stuff
-                break;
-            } else if (selection == 2) {
-                System.out.println("Enter the number of battles (0 for random)");
-                System.out.print(">>> ");
-                selection = input.nextInt();
+            if (selection == 0) {
 
-                if (selection == 0) {
-
-                }
-            } else if (selection == 3) {
-                break;
             }
         }
 
