@@ -73,11 +73,7 @@ public class Pokemon {
     }
 
     public String toString () {
-        String att = "";
-        for (Attack e: attack) {
-            att += e;
-        }
-        return String.format("║ %-20s ║ %-5d ║ %-20s ║ %-20s ║ %-20s ║%s", this.name, this.hp, this.type, this.resistance, this.weakness, att);
+        return String.format("║ %-20s ║ %-5d ║ %-20s ║ %-20s ║ %-20s ║", this.name, this.hp, this.type, this.resistance, this.weakness);
     }
 }
 

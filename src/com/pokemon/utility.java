@@ -39,7 +39,7 @@ public class utility {
         }
     }
 
-    public static void delayPrintln(String toPrint){
+    public static void delayPrintln(String toPrint) {
         delayPrint(toPrint + "\n", 20);
     }
 
@@ -52,13 +52,18 @@ public class utility {
     }
 
     public static void delayPrint(String toPrint, int time) {
-        for (char c: toPrint.toCharArray()) {
+        for (char c : toPrint.toCharArray()) {
             System.out.print(c);
             try {
                 Thread.sleep(time);
-            } catch (Exception e) {}
+            } catch (Exception e) {
+            }
         }
     }
 
+    public static void clearScreen() {
+        for (int j = 0; j < 100; j++)
+            System.out.println();
+    }
 
 }

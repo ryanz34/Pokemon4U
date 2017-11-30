@@ -6,8 +6,9 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         int selection, pokemonCounter = 0;
-        String pokeSelect;
-        ArrayList<Pokemon> selectedPokemons = new ArrayList<>();
+        int pokeSelect;
+        String confirmation;
+        ArrayList<Integer> selectedPokemons = new ArrayList<>();
 
         Pokedex pokedex = new Pokedex();
         Scanner input = new Scanner(System.in);
@@ -24,15 +25,26 @@ public class Main {
         if (selection == 1) {
             // Multiplayer stuff
         } else if (selection == 2) {
-            pokedex.printTable();
 
             while (pokemonCounter < 6) {
-                pokeSelect = input.next();
+                pokedex.printTable();
 
-                if (pokedex.contains(pokeSelect)){
-                    utility.delayPrintln("");
+                utility.delayPrintln("Please select a pokemon");
+                pokeSelect = utility.getRange(input, "Error, please enter a valid Pokemon number.", ">>>", 1, 151);
+                confirmation = utility.stringData(input, "You have chosen " + pokedex.getPokemon(pokeSelect).getName() + ">>>", "Invalid selection.", new String[]{"y", "n"});
+
+                if (confirmation.equals("y") && !selectedPokemons.contains(pokeSelect)) {
+                    selectedPokemons.add(pokeSelect);
+                    pokemonCounter += 1;
+                    utility.clearScreen();
+
+                    utility.delayPrintln(pokedex.getPokemon(pokeSelect).getArt(), 1);
+
+                    utility.delayPrintln(pokedex.getPokemon(pokeSelect).getName() + " has been added to your team.");
                 }
             }
+
+            System.out.println(selectedPokemons);
         }
     }
 }
