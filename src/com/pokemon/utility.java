@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Scanner;
 
 public class utility {
-    public static String stringData(Scanner input, String helper, String error, String[] data) {
+    public static String getData(Scanner input, String helper, String error, String[] data) {
         HashSet<String> correctResponse = new HashSet<>(Arrays.asList(data));
         String response;
 
@@ -40,7 +40,7 @@ public class utility {
     }
 
     public static void delayPrintln(String toPrint) {
-        delayPrint(toPrint + "\n", 20);
+        delayPrint(toPrint + "\n", 10);
     }
 
     public static void delayPrintln(String toPrint, int time) {
@@ -48,7 +48,7 @@ public class utility {
     }
 
     public static void delayPrint(String toPrint) {
-        delayPrint(toPrint, 20);
+        delayPrint(toPrint, 10);
     }
 
     public static void delayPrint(String toPrint, int time) {
