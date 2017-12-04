@@ -42,12 +42,12 @@ public class battle {
         utility.delayPrintln("Select a Pokemon");
 
         System.out.printf("║ %s ║ %-20s ║ %-5s ║ %-5s ║ %-20s ║ %-20s ║ %-20s ║ %-10s ║ %-10s ║\n", "#", "Name", "HP", "EC", "Type", "Resistance", "Weakness", "Stunned", "Disabled");
-        System.out.println("╠═════╬══════════════════════╬═══════╬═══════╬══════════════════════╬══════════════════════╬══════════════════════╬════════════╬════════════╣");
+        System.out.println("╠═══╬══════════════════════╬═══════╬═══════╬══════════════════════╬══════════════════════╬══════════════════════╬════════════╬════════════╣");
 
         for (AttackPokemon p : playerPokemons) {
             if (p.isAlive()) {
                 counter ++;
-                System.out.println(String.format("║ %d", counter) + p);
+                System.out.println(String.format("║ %d ", counter) + p);
             }
         }
         if (pokemonSelected == null) {
@@ -76,7 +76,7 @@ public class battle {
 
         System.out.println(pokemonSelected.getArt());
         System.out.println("Current status:");
-        System.out.println(pokemonSelected);
+        System.out.printf("EC: %5d Health: %5d Status: %s\n", pokemonSelected.getEC(), pokemonSelected.getHp(), pokemonSelected.getStatus());
 
         utility.delayPrintln("╔═══╦══════════════════════╗\n" +
                 String.format("║ 1 ║ %20s ║", "Attack") + "\n" +
@@ -87,8 +87,12 @@ public class battle {
         while (true) {
             option = utility.getRange(input, "Please select a valid option", "Select your Action >>> ", 1, 3);
             if (option == 1) {
-                if(pokemonSelected.Attack(enemyPokemon)) {
-                    break;
+                if (pokemonSelected.isStunned()) {
+                    utility.delayPrintln("Cannot attack, pokemon is stunned.");
+                } else {
+                    if (pokemonSelected.Attack(enemyPokemon)) {
+                        break;
+                    }
                 }
             } else if (option == 2) {
                 if(selectPokemon()) {
@@ -98,7 +102,6 @@ public class battle {
                 break;
             }
         }
-
     }
 
     public void startBattle (){

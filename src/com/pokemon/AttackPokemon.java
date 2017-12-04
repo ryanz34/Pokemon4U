@@ -41,6 +41,40 @@ public class AttackPokemon {
         return name;
     }
 
+    public boolean isStunned() {
+        return stunned;
+    }
+
+    public boolean isDisabled() {
+        return disabled;
+    }
+
+    public int getHp() {
+        return hp;
+    }
+
+    public int getEC() {
+        return EC;
+    }
+
+    public String getStatus () {
+        String stat = "";
+
+        if (stunned) {
+            stat += "Stunned";
+        }
+        if (disabled) {
+            stat += "Disabled";
+        }
+
+        if (stat.length() != 0) {
+            return stat;
+        } else {
+            return "Alive";
+        }
+
+    }
+
     public String getArt() {
         return art;
     }
