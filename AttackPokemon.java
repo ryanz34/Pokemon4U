@@ -60,6 +60,16 @@ public class AttackPokemon {
         EC += Math.min(EC + 10, 50);
     }
 
+    public void turnDone () {
+        if (stunned) {
+            stunned = false;
+        }
+    }
+
+    public void battleDone () {
+        hp = Math.min(ohp, hp + 20);
+    }
+
     public String getStatus() {
         String stat = "";
 
@@ -109,6 +119,7 @@ public class AttackPokemon {
 
                 if (EC >= selectedAttack.getEc()) {
                     this.EC -= selectedAttack.getEc();
+                    this.Attack(selectedAttack, opponent);
 
                     return true;
 

@@ -46,6 +46,7 @@ public class battle {
            pokeNumber = pokeTools.getRange("Please select a valid pokemon", "Select your pokemon >>> ", 1, counter);
         } else {
             pokeNumber = pokeTools.getRange("Please select a valid pokemon", "Select your pokemon (0 to exit) >>> ", 0, counter);
+            playerPokemons.add(pokemonSelected);
             if (pokeNumber == 0) {
                 return false;
             }
@@ -64,7 +65,7 @@ public class battle {
     public void computerAction () {
         ArrayList<Attack> canPerform = new ArrayList<>();
 
-        pokeTools.delayPrintTable(pokemonSelected.getArt() + enemyPokemon.getName());
+        pokeTools.delayPrintTable(enemyPokemon.getArt() + enemyPokemon.getName());
 
         for (Attack e: enemyPokemon.getAttacks()) {
             if (e.getEc() <= enemyPokemon.getEC()) {
@@ -84,7 +85,7 @@ public class battle {
 
         pokeTools.delayPrintTable(pokemonSelected.getArt());
         pokeTools.delayPrintTable("Current status:");
-        pokeTools.delayPrintln(String.format("EC: %5d \n Health: %5d \n Status: %s\n", pokemonSelected.getEC(), pokemonSelected.getHp(), pokemonSelected.getStatus()));
+        pokeTools.delayPrintln(String.format("EC: %5d \nHealth: %5d\nStatus: %s\n", pokemonSelected.getEC(), pokemonSelected.getHp(), pokemonSelected.getStatus()));
 
         pokeTools.delayPrintTable("╔═══╦══════════════════════╗\n" +
                 String.format("║ 1 ║ %20s ║", "Attack") + "\n" +
@@ -124,9 +125,9 @@ public class battle {
 
     public void startBattle (){
         int cPokemon;
-        while (computerPokemon.size() != 0 && playerPokemons.size() != 0) {
-            selectPokemon();
+        selectPokemon();
 
+        while (computerPokemon.size() != 0 && playerPokemons.size() != 0) {
             cPokemon = rNumber.nextInt(computerPokemon.size());
             enemyPokemon = new AttackPokemon(pokeLibrary.getPokemon(cPokemon));
             computerPokemon.remove(cPokemon);
@@ -143,6 +144,11 @@ public class battle {
                         break;
                     }
 
+                    for (AttackPokemon p : playerPokemons) {
+                        p.turnDone();
+                    }
+                    pokemonSelected.turnDone();
+
                     computerAction();
 
                     if (!pokemonSelected.isAlive() && playerPokemons.size() != 0) {
@@ -151,6 +157,9 @@ public class battle {
                     } else if (playerPokemons.size() == 0) {
                         break;
                     }
+
+                    enemyPokemon.turnDone();
+
                 } else {
                     playerFirst = false;
                     pokeTools.delayPrintln("Player goes SECOND");
