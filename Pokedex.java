@@ -1,5 +1,3 @@
-package com.pokemon;
-
 import java.io.File;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -17,8 +15,6 @@ public class Pokedex {
             String[] processData;
             String art;
             int counter = 1;
-
-
 
             while (infile.hasNextLine()) {
                 art = "";
@@ -63,11 +59,11 @@ public class Pokedex {
     }
 
     public void printTable() {
-        System.out.println(String.format("║ %3s ║ %-20s ║ %-5s ║ %-20s ║ %-20s ║ %-20s ║", "#", "Name", "HP", "Type", "Resistance", "weakness"));
-        System.out.println("╠═════╬══════════════════════╬═══════╬══════════════════════╬══════════════════════╬══════════════════════║");
+        pokeTools.delayPrintTable(String.format("║ %3s ║ %-20s ║ %-5s ║ %-20s ║ %-20s ║ %-20s ║", "#", "Name", "HP", "Type", "Resistance", "weakness"));
+        pokeTools.delayPrintTable("╠═════╬══════════════════════╬═══════╬══════════════════════╬══════════════════════╬══════════════════════║");
 
         for (Map.Entry<Integer, Pokemon> entry : pokeData.entrySet()) {
-            System.out.println(String.format("║ %3d ", entry.getKey()) + entry.getValue().toString());
+            pokeTools.delayPrintTable(String.format("║ %3d ", entry.getKey()) + entry.getValue().toString());
         }
     }
 }

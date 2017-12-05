@@ -1,5 +1,3 @@
-package com.pokemon;
-
 import java.util.ArrayList;
 
 

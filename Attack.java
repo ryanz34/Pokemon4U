@@ -1,5 +1,3 @@
-package com.pokemon;
-
 public class Attack {
     private String name;
     private int ec;
