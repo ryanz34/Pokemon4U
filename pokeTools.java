@@ -97,6 +97,14 @@ public class pokeTools {
         }
     }
 
+    public static void pause () {
+        pokeTools.delayPrintln("Press enter to continue...");
+        try {
+            System.in.read();
+        } catch (Exception e) {
+        }
+    }
+
     public static void clearScreen() {
         for (int j = 0; j < 100; j++)
             System.out.println();

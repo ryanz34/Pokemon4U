@@ -57,7 +57,7 @@ public class AttackPokemon {
     }
 
     public void roundEnd() {
-        EC += Math.min(EC + 10, 50);
+        EC = Math.min(EC + 10, 50);
     }
 
     public void turnDone () {
@@ -147,21 +147,12 @@ public class AttackPokemon {
                 } else {
                     pokeTools.delayPrintln(att.getName() + " missed.");
                 }
-                pokeTools.delayPrint("Press enter to continue...");
-                try {
-                    System.in.read();
-                } catch (Exception e) {
-                }
+
                 break;
 
             case "wind storm":
                 while (pokeTools.randint(0, 1) == 1 && opponent.isAlive()) {
                     opponent.hit(damage, "",this);
-                    pokeTools.delayPrint("Press enter to continue...");
-                    try {
-                        System.in.read();
-                    } catch (Exception e) {
-                    }
                 }
                 break;
 
@@ -172,11 +163,7 @@ public class AttackPokemon {
                     opponent.hit(damage, "", this);
                 }
 
-                pokeTools.delayPrint("Press enter to continue...");
-                try {
-                    System.in.read();
-                } catch (Exception e) {
-                }
+                break;
 
             case "disable":
                 if (pokeTools.randint(0, 1) == 1) {
@@ -185,24 +172,22 @@ public class AttackPokemon {
                     opponent.hit(damage, "", this);
                 }
 
-                pokeTools.delayPrint("Press enter to continue...");
-                try {
-                    System.in.read();
-                } catch (Exception e) {
-                }
+                break;
 
             case "recharge":
-                EC += Math.min(50, EC + damage);
+                EC = Math.min(50, EC + damage);
+
+                pokeTools.delayPrintln(name + "'s EC was restored by " + damage + ".");
+
+                break;
 
             default:
                 opponent.hit(damage, "", this);
-                pokeTools.delayPrint("Press enter to continue...");
-                try {
-                    System.in.read();
-                } catch (Exception e) {
-                }
+
                 break;
         }
+
+        pokeTools.pause();
 
     }
 

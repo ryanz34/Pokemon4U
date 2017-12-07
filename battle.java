@@ -85,7 +85,7 @@ public class battle {
 
         pokeTools.delayPrintTable(pokemonSelected.getArt());
         pokeTools.delayPrintTable("Current status:");
-        pokeTools.delayPrintln(String.format("EC: %5d \nHealth: %5d\nStatus: %s\n", pokemonSelected.getEC(), pokemonSelected.getHp(), pokemonSelected.getStatus()));
+        pokeTools.delayPrintln(String.format("EC: %9d \nHealth: %5d\nStatus: %s\n", pokemonSelected.getEC(), pokemonSelected.getHp(), pokemonSelected.getStatus()));
 
         pokeTools.delayPrintTable("╔═══╦══════════════════════╗\n" +
                 String.format("║ 1 ║ %20s ║", "Attack") + "\n" +
@@ -153,6 +153,7 @@ public class battle {
 
                     if (!pokemonSelected.isAlive() && playerPokemons.size() != 0) {
                         pokemonSelected = null;
+                        selectPokemon();
 
                     } else if (playerPokemons.size() == 0) {
                         break;
@@ -167,6 +168,7 @@ public class battle {
 
                     if (!pokemonSelected.isAlive() && playerPokemons.size() != 0) {
                         pokemonSelected = null;
+                        selectPokemon();
 
                     } else if (playerPokemons.size() == 0) {
                         break;
