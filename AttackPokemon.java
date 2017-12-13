@@ -15,7 +15,7 @@ public class AttackPokemon {
     private String art;
     private boolean fainted = false;
     private boolean stunned = false;
-    private boolean disabled = false;
+    private boolean disabled = true;
 
     public AttackPokemon(Pokemon poke) {
         name = poke.getName();
@@ -26,6 +26,7 @@ public class AttackPokemon {
         attCount = poke.getAttCount();
         attacks = poke.getAttack();
         art = poke.getArt();
+        disabled = true;
     }
 
     public String getType() {
@@ -133,6 +134,7 @@ public class AttackPokemon {
 
     public void Attack(Attack att, AttackPokemon opponent) {
         int damage = att.getDamage();
+        System.out.println(disabled);
 
         if (disabled) {
             damage -= 10;
@@ -212,8 +214,10 @@ public class AttackPokemon {
 
         if (type.equals("stun")) {
             pokeTools.delayPrintln(this.name + " is stunned.");
+            stunned = true;
         } else if (type.equals("disable")) {
             pokeTools.delayPrintln(this.name + " is disabled.");
+
         }
 
         if (hp <= 0) {
