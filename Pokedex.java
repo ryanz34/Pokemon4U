@@ -53,11 +53,6 @@ public class Pokedex {
         return null;
     }
 
-    public boolean contains(int number) {
-        return pokeData.containsKey(number);
-
-    }
-
     public void printTable() {
         pokeTools.delayPrintTable(String.format("║ %3s ║ %-20s ║ %-5s ║ %-20s ║ %-20s ║ %-20s ║", "#", "Name", "HP", "Type", "Resistance", "weakness"));
         pokeTools.delayPrintTable("╠═════╬══════════════════════╬═══════╬══════════════════════╬══════════════════════╬══════════════════════║");

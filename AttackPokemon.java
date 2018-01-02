@@ -10,12 +10,11 @@ public class AttackPokemon {
     private String type;
     private String resistance;
     private String weakness;
-    private int attCount;
     private ArrayList<Attack> attacks;
     private String art;
     private boolean fainted = false;
     private boolean stunned = false;
-    private boolean disabled = true;
+    private boolean disabled = false;
 
     public AttackPokemon(Pokemon poke) {
         name = poke.getName();
@@ -23,10 +22,8 @@ public class AttackPokemon {
         type = poke.getType();
         resistance = poke.getResistance();
         weakness = poke.getWeakness();
-        attCount = poke.getAttCount();
         attacks = poke.getAttack();
         art = poke.getArt();
-        disabled = true;
     }
 
     public String getType() {
@@ -67,9 +64,7 @@ public class AttackPokemon {
         }
     }
 
-    public void battleDone () {
-        hp = Math.min(ohp, hp + 20);
-    }
+    public void battleDone () {hp = Math.min(ohp, hp + 20);}
 
     public String getStatus() {
         String stat = "";
@@ -97,7 +92,7 @@ public class AttackPokemon {
         return attacks;
     }
 
-    public boolean playerAttack(AttackPokemon opponent) {
+    public boolean playerAttack(AttackPokemon opponent, String username) {
         pokeTools.delayPrintln(String.format("║ %3s ║ %-20s ║ %-10s ║ %-10s ║ %-20s ║", "#", "Attack", "EC", "DMG", "Special"));
         pokeTools.delayPrintln("╠═════╬══════════════════════╬════════════╬════════════╬══════════════════════╣");
 
@@ -120,7 +115,7 @@ public class AttackPokemon {
 
                 if (EC >= selectedAttack.getEc()) {
                     this.EC -= selectedAttack.getEc();
-                    this.Attack(selectedAttack, opponent);
+                    this.Attack(selectedAttack, opponent, username);
 
                     return true;
 
@@ -132,15 +127,14 @@ public class AttackPokemon {
 
     }
 
-    public void Attack(Attack att, AttackPokemon opponent) {
+    public void Attack(Attack att, AttackPokemon opponent, String username) {
         int damage = att.getDamage();
-        System.out.println(disabled);
 
         if (disabled) {
             damage -= 10;
         }
 
-        pokeTools.delayPrintln(this.name + " use " + att.getName());
+        pokeTools.delayPrintln(username + ": " + this.name + " use " + att.getName());
 
         switch (att.getSpecial()) {
             case "wild card":
@@ -183,6 +177,15 @@ public class AttackPokemon {
 
                 break;
 
+            case "heal":
+                opponent.hit(damage, "", this);
+
+                pokeTools.delayPrintln(name + "'s health was restored by " + Math.min(ohp - hp, damage) + ".");
+                hp = Math.min(ohp, hp+50);
+
+                break
+
+
             default:
                 opponent.hit(damage, "", this);
 
@@ -193,17 +196,16 @@ public class AttackPokemon {
 
     }
 
-
     public void hit(int damage, String type, AttackPokemon attacker) {
         if (attacker.getType().equals(weakness)) {
             hp -= damage * 2;
-            pokeTools.delayPrintln("Its not very effective");
+            pokeTools.delayPrintln("Its super effective");
             pokeTools.delayPrintln(this.name + " was hit for " + damage * 2 + " damage.");
 
 
         } else if (attacker.getType().equals(resistance)) {
             hp -= damage / 2;
-            pokeTools.delayPrintln("Its super effective");
+            pokeTools.delayPrintln("Its not very effective");
             pokeTools.delayPrintln(this.name + " was hit for " + damage / 2 + " damage.");
 
         } else {
@@ -217,7 +219,7 @@ public class AttackPokemon {
             stunned = true;
         } else if (type.equals("disable")) {
             pokeTools.delayPrintln(this.name + " is disabled.");
-
+            disabled = true;
         }
 
         if (hp <= 0) {
