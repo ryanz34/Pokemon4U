@@ -42,10 +42,6 @@ public class AttackPokemon {
         return stunned;
     }
 
-    public boolean isDisabled() {
-        return disabled;
-    }
-
     public int getHp() {
         return hp;
     }
@@ -183,7 +179,7 @@ public class AttackPokemon {
                 pokeTools.delayPrintln(name + "'s health was restored by " + Math.min(ohp - hp, damage) + ".");
                 hp = Math.min(ohp, hp+50);
 
-                break
+                break;
 
 
             default:
