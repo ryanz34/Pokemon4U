@@ -40,7 +40,11 @@ public class Pokedex {
 
                 counter++;  // Adding to counter
 
+                artIn.close(); // Close to save memory
+
             }
+
+            infile.close();
         } catch (Exception e) {
             e.printStackTrace();  // Print the error if it occurs
         }
