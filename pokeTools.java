@@ -312,7 +312,6 @@ public class pokeTools {
 
             if (selectedPokemons.contains(pokeSelect)) {  // If the pokemon has already been selected
                 delayPrintln(selectedPokemon.getName() + " is already on your team.");
-                delayPrint("Press enter to continue...");
                 pause();
             } else {
 
@@ -329,7 +328,6 @@ public class pokeTools {
                     selectedPokemons.add(pokeSelect);  // add the pokemon to the selected
                     pokemonCounter += 1;
                     delayPrintln(selectedPokemon.getName() + " has been added to your team.");
-                    delayPrint("Press enter to continue...");
                     pause();
 
                 }

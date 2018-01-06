@@ -106,10 +106,10 @@ public class PokemonArena {
             pokeNumber = pokeTools.getRange("Please select a valid pokemon", "Select your pokemon >>> ", 1, counter);
         } else {  // If the player has a pokemon active, then the player can select or return to the previous screen
             pokeNumber = pokeTools.getRange("Please select a valid pokemon", "Select your pokemon (0 to exit) >>> ", 0, counter);
-            playerPokemons.add(pokemonSelected);  // Add the active pokemon back into the player's queue
             if (pokeNumber == 0) {  // Quit
                 return false;
             }
+            playerPokemons.add(pokemonSelected);  // Add the active pokemon back into the player's queue
         }
         pokemonSelected = playerPokemons.get(pokeNumber - 1);  // Gets the pokemon
         playerPokemons.remove(pokeNumber - 1); // Remove the active pokemon from the queue

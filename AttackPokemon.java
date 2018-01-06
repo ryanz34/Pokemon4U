@@ -119,7 +119,6 @@ public class AttackPokemon {
                 selectedAttack = attacks.get(moveNum - 1);  // gets the attack selected
 
                 if (EC >= selectedAttack.getEc()) {  // Check if the player has the required EC
-                    this.EC -= selectedAttack.getEc();  // Subtract the EC of the attack
                     this.Attack(selectedAttack, opponent, username);  // Attack the pokemon
 
                     return true;  // Action performed
@@ -140,6 +139,8 @@ public class AttackPokemon {
      */
 
     public void Attack(Attack att, AttackPokemon opponent, String username) {
+        EC -= att.getEc();  // Subtract the EC of the attack
+
         int damage = att.getDamage();  // Gets the damage of the attack
 
         if (disabled) {  // If the pokemon is disabled, then subtract 10 from the damage of the attack, limit at 0.
@@ -158,10 +159,14 @@ public class AttackPokemon {
 
                 break;  // Break out of the switch
 
-            case "wind storm":
+            case "wild storm":
+                int counter = 0; // Counter to show how many times the wild storm hit
                 while (pokeTools.randint(0, 1) == 1 && opponent.isAlive()) {  // While store can attack infinity, 50 % chance of continued attack
                     opponent.hit(damage, "",this);
+                    counter++;
                 }
+
+                pokeTools.delayPrintln(opponent.getName() + " was hit " + counter + " times.");
                 break;
 
             case "stun":
@@ -183,9 +188,9 @@ public class AttackPokemon {
                 break;
 
             case "recharge":  // Recharging the EC
-                EC = Math.min(50, EC + damage);
 
-                pokeTools.delayPrintln(name + "'s EC was restored by " + damage + ".");
+                pokeTools.delayPrintln(name + "'s EC was restored by " + Math.min(50 - EC, damage) + ".");
+                EC = Math.min(50, EC + damage);
 
                 break;
 
