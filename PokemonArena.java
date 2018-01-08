@@ -170,7 +170,7 @@ public class PokemonArena {
                 pokeTools.clearScreen(); // Prints the current status along with the art and the choices for moves
                 pokeTools.delayPrintTable(pokemonSelected.getArt());
                 pokeTools.delayPrintTable("Current status:");
-                pokeTools.delayPrintln(String.format("Energy: %9d \nHealth: %5d\nStatus: %s\n", pokemonSelected.getEC(), pokemonSelected.getHp(), pokemonSelected.getStatus()));
+                pokeTools.delayPrintln(String.format("Energy: %5d \nHealth: %5d\nStatus: %s\n", pokemonSelected.getEC(), pokemonSelected.getHp(), pokemonSelected.getStatus()));
 
                 pokeTools.delayPrintTable("╔═══╦══════════════════════╗\n" +
                         String.format("║ 1 ║ %20s ║", "Attack") + "\n" +
