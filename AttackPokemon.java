@@ -145,6 +145,7 @@ public class AttackPokemon {
 
         if (disabled) {  // If the pokemon is disabled, then subtract 10 from the damage of the attack, limit at 0.
             damage = Math.max(damage - 10, 0);
+            pokeTools.delayPrintln(this.name + " is disabled.");
         }
 
         pokeTools.delayPrintln(username + ": " + this.name + " use " + att.getName());  // Prints the attack usage

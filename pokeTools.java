@@ -169,6 +169,7 @@ public class pokeTools {
         delayPrintTable(pokeTitle);
 
         delayPrintln("");
+        delayPrintln("Datafile by Aaron Li");
         delayPrintln("Game made by: Ryan Zhang");
         delayPrintln("");
 
